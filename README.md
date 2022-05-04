@@ -4,7 +4,7 @@
 with [OpenID Connect](https://openid.net/connect/).
 
 This module lets you authenticate using OpenID Connect in your Node.js
-applications.  By plugging into Passport, OpenID Connect authentication can be
+applications. By plugging into Passport, OpenID Connect authentication can be
 easily and unobtrusively integrated into any application or framework that
 supports [Connect](https://github.com/senchalabs/connect#readme)-style
 middleware, including [Express](https://expressjs.com/).
@@ -12,7 +12,7 @@ middleware, including [Express](https://expressjs.com/).
 ## Install
 
 ```sh
-$ npm install passport-openidconnect
+$ npm install deskfy-passport-openidconnect --save
 ```
 
 ## Usage
@@ -20,26 +20,26 @@ $ npm install passport-openidconnect
 #### Configure Strategy
 
 The OpenID Connect authentication strategy authenticates users using their
-account at an OpenID Provider (OP).  The strategy needs to be configured with
+account at an OpenID Provider (OP). The strategy needs to be configured with
 the provider's endpoints, as well as a client ID and secret that has been issued
-by the provider to the app.  Consult the provider's documentation for the
+by the provider to the app. Consult the provider's documentation for the
 locations of these endpoints and instructions on how to register a client.
 
 The strategy takes a `verify` function as an argument, which accepts `issuer`
-and `profile` as arguments.  `issuer` is set to an identifier for the OP.
+and `profile` as arguments. `issuer` is set to an identifier for the OP.
 `profile` contains the user's [profile information](https://www.passportjs.org/reference/normalized-profile/)
-stored in their account at the OP.  When authenticating a user, this strategy
+stored in their account at the OP. When authenticating a user, this strategy
 uses the OpenID Connect protocol to obtain this information via a sequence of
 redirects and back-channel HTTP requests to the OP.
 
 The `verify` function is responsible for determining the user to which the
-account at the OP belongs.  In cases where the account is logging in for the
-first time, a new user record is typically created automatically.  On subsequent
+account at the OP belongs. In cases where the account is logging in for the
+first time, a new user record is typically created automatically. On subsequent
 logins, the existing user record will be found via its relation to the OP
 account.
 
 Because the `verify` function is supplied by the application, the app is free to
-use any database of its choosing.  The example below illustrates usage of a SQL
+use any database of its choosing. The example below illustrates usage of a SQL
 database.
 
 ```js
@@ -68,7 +68,7 @@ passport.use(new OpenIDConnectStrategy({
           profile.displayName
         ], function(err) {
           if (err) { return cb(err); }
-          
+
           var id = this.lastID;
           db.run('INSERT INTO federated_credentials (user_id, provider, subject) VALUES (?, ?, ?)', [
             id,
@@ -101,31 +101,33 @@ passport.use(new OpenIDConnectStrategy({
 #### Define Routes
 
 Two routes are needed in order to allow users to log in with their account at an
-OP.  The first route redirects the user to the OP, where they will authenticate:
+OP. The first route redirects the user to the OP, where they will authenticate:
 
 ```js
-app.get('/login', passport.authenticate('openidconnect'));
+app.get("/login", passport.authenticate("openidconnect"));
 ```
 
 The second route processes the authentication response and logs the user in,
 when the OP redirects the user back to the app:
 
 ```js
-app.get('/cb',
-  passport.authenticate('openidconnect', { failureRedirect: '/login', failureMessage: true }),
-  function(req, res) {
-    res.redirect('/');
-  });
+app.get(
+  "/cb",
+  passport.authenticate("openidconnect", { failureRedirect: "/login", failureMessage: true }),
+  function (req, res) {
+    res.redirect("/");
+  }
+);
 ```
 
 ## Examples
 
-* [todos-express-openidconnect](https://github.com/passport/todos-express-openidconnect)
+- [todos-express-openidconnect](https://github.com/passport/todos-express-openidconnect)
 
   Illustrates how to use the OpenID Connect strategy within an [Express](https://expressjs.com/)
   application.
 
-* [todos-express-auth0](https://github.com/passport/todos-express-auth0)
+- [todos-express-auth0](https://github.com/passport/todos-express-auth0)
 
   Illustrates how to use the OpenID Connect strategy for [Auth0](https://auth0.com/)
   integration within an [Express](https://expressjs.com/) application.
@@ -135,4 +137,3 @@ app.get('/cb',
 [The MIT License](https://opensource.org/licenses/MIT)
 
 Copyright (c) 2011-2022 Jared Hanson <[https://www.jaredhanson.me/](https://www.jaredhanson.me/)>
-
