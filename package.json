@@ -1,6 +1,6 @@
 {
   "name": "deskfy-passport-openidconnect",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "OpenID Connect authentication multi strategy for Passport.",
   "keywords": [
     "passport",
@@ -12,12 +12,24 @@
     "identity"
   ],
   "author": "Jared Hanson <jaredhanson@gmail.com> (https://www.jaredhanson.me/)",
+  "contributors": [
+    {
+      "name": "Jared Hanson",
+      "email": "jaredhanson@gmail.com",
+      "url": "https://www.jaredhanson.me/"
+    },
+    {
+      "name": "Bruno França",
+      "email": "bruno.franca@deskfy.io",
+      "url": "https://deskfy.io"
+    }
+  ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/jaredhanson/passport-openidconnect.git"
+    "url": "git://github.com/deskfy/passport-openidconnect"
   },
   "bugs": {
-    "url": "https://github.com/jaredhanson/passport-openidconnect/issues"
+    "url": "https://github.com/deskfy/passport-openidconnect/issues"
   },
   "funding": {
     "type": "github",
