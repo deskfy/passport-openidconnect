@@ -1,6 +1,6 @@
 {
   "name": "deskfy-passport-openidconnect",
-  "version": "1.1.9",
+  "version": "1.2.0",
   "description": "OpenID Connect authentication multi strategy for Passport.",
   "keywords": [
     "passport",
@@ -44,6 +44,7 @@
   ],
   "main": "./lib",
   "dependencies": {
+    "jsonwebtoken": "^9.0.2",
     "oauth": "0.9.x",
     "passport-strategy": "1.x.x"
   },
